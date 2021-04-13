@@ -24,7 +24,6 @@ public class Tree {
         else{
             return (size(node.getLeft())+1+size(node.getRight()));
         }
-
     }
 
 
