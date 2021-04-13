@@ -13,5 +13,19 @@ public class Tree {
         return root == null;
     }
 
+    public int size(){
+        return size(root);
+    }
+    private int size(Node node)
+    {
+        if(node==null){
+            return 0;
+        }
+        else{
+            return (size(node.getLeft())+1+size(node.getRight()));
+        }
+
+    }
+
 
 }
