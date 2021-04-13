@@ -22,6 +22,7 @@ public class Tree {
             return 0;
         }
         else{
+
             return (size(node.getLeft())+1+size(node.getRight()));
         }
     }
