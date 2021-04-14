@@ -121,6 +121,9 @@ public class BinaryTree {
         }
     }
     public int height() {
+        //i added this check here because.. yeah check assignment description
+        if(root==null)
+        {return -1;}
         return height(root);
     }
 
