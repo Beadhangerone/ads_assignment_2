@@ -20,7 +20,7 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
-    private void insert(BinaryTreeNode node, int element) {
+   private void insert(BinaryTreeNode node, int element) {
         if (element > node.getElement()) {
             insertElementRight(node, element);
         } else if (element < node.getElement()) {
