@@ -23,7 +23,7 @@ public class BinaryTree {
     private int size(BinaryTreeNode node) {
         if(node == null) {
             return  0;
-        } return (size(node.getLeft()) + 1 + size(node.getRight()));
+        } return (size(node.getLeftChild()) + 1 + size(node.getRightChild()));
     }
     public boolean contains(int element){
         if(root == null)
@@ -44,10 +44,10 @@ public class BinaryTree {
         if(element == node.getElement()) {
             return true;
         }
-        if(contains(node.getLeft(), element)) {
+        if(contains(node.getLeftChild(), element)) {
             return true;
         }
-        return contains(node.getRight(), element);
+        return contains(node.getRightChild(), element);
     }
 
     public ArrayList<Integer> inOrder() {
@@ -60,9 +60,9 @@ public class BinaryTree {
         if(node == null) {
             return;
         }
-        inOrder(node.getLeft(), values);
+        inOrder(node.getLeftChild(), values);
         values.add(node.getElement());
-        inOrder(node.getRight(), values);
+        inOrder(node.getRightChild(), values);
     }
 
     public ArrayList<Integer> preOrder() {
@@ -76,8 +76,8 @@ public class BinaryTree {
             return;
         }
         values.add(node.getElement());
-        preOrder(node.getLeft(), values);
-        preOrder(node.getRight(), values);
+        preOrder(node.getLeftChild(), values);
+        preOrder(node.getRightChild(), values);
     }
 
 
@@ -91,8 +91,8 @@ public class BinaryTree {
         if(node == null) {
             return;
         }
-        postOrder(node.getLeft(), values);
-        postOrder(node.getRight(), values);
+        postOrder(node.getLeftChild(), values);
+        postOrder(node.getRightChild(), values);
         values.add(node.getElement());
     }
 
@@ -110,13 +110,13 @@ public class BinaryTree {
 
         while(!queue.isEmpty()) {
             tempNode = queue.poll();
-            if(tempNode.getLeft() != null) {
-                queue.add(tempNode.getLeft());
-                values.add(tempNode.getLeft().getElement());
+            if(tempNode.getLeftChild() != null) {
+                queue.add(tempNode.getLeftChild());
+                values.add(tempNode.getLeftChild().getElement());
             }
-            if(tempNode.getRight() != null) {
-                queue.add(tempNode.getRight());
-                values.add(tempNode.getRight().getElement());
+            if(tempNode.getRightChild() != null) {
+                queue.add(tempNode.getRightChild());
+                values.add(tempNode.getRightChild().getElement());
             }
         }
     }
@@ -128,18 +128,12 @@ public class BinaryTree {
         if(node == null) {
             return 0;
         } else {
-            int leftHeight = height(node.getLeft());
-            int rightHeight = height(node.getRight());
+            int leftHeight = height(node.getLeftChild());
+            int rightHeight = height(node.getRightChild());
 
             if(leftHeight > rightHeight)
                 return (leftHeight+1);
             else return (rightHeight+1);
         }
     }
-
-
-
-
-
-
 }
