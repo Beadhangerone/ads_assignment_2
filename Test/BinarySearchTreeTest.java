@@ -3,6 +3,23 @@ import org.junit.jupiter.api.Test;
 
 class BinarySearchTreeTest{
     @Test
+    void insert(){
+        BinaryTreePrint print = new BinaryTreePrint();
+
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        binarySearchTree.insert(1);
+        binarySearchTree.insert(3);
+        binarySearchTree.insert(5);
+        binarySearchTree.insert(2);
+        binarySearchTree.insert(4);
+
+        System.out.println(binarySearchTree.size());
+
+        System.out.println(binarySearchTree.inOrder().toString());
+        print.printTree(binarySearchTree.getRoot());
+
+    }
+    @Test
     void removeElement(){
         BinarySearchTree bTree = new BinarySearchTree();
         BinaryTreePrint treePrinter = new BinaryTreePrint();
