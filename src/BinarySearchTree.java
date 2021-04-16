@@ -20,7 +20,7 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
-   private void insert(BinaryTreeNode node, int element) {
+    private void insert(BinaryTreeNode node, int element) {
         if (element > node.getElement()) {
             insertElementRight(node, element);
         } else if (element < node.getElement()) {
@@ -28,29 +28,69 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
-    public void insert(int element) {
+    public BinaryTreeNode insert(int element) {
+        BinaryTreeNode node = new BinaryTreeNode(element);
         if (root == null) {
-            root = new BinaryTreeNode(element);
+            root = node;
             setRoot(root);
         } else {
             insert(root, element);
         }
+        return node;
     }
 
-    public int findMin() throws Exception {
-        ArrayList<Integer> elements = super.inOrder();
-        if (!elements.isEmpty())
-            return Collections.min(elements);
-
-        throw new Exception("Tree is empty");
+    public void removeElement(BinaryTreeNode element) {
+        root = removeElement_recursive(root, element);
     }
 
-    public int findMax() throws Exception {
-        ArrayList<Integer> elements = super.inOrder();
-        if (!elements.isEmpty())
-            return Collections.max(elements);
+    private BinaryTreeNode removeElement_recursive(BinaryTreeNode root, BinaryTreeNode element) {
+        if (root == null) {
+            return root;
+        }
 
-        throw new Exception("Tree is empty");
+        int rootV = root.getElement();
+        int elementV = element.getElement();
+
+        if (elementV < rootV) {
+            root.setLeftChild(removeElement_recursive(root.getLeftChild(), element));
+        } else if (elementV > rootV) {
+            root.setRightChild(removeElement_recursive(root.getRightChild(), element));
+        } else { // we found the element to delete
+            if (root.getLeftChild() == null) {
+                return root.getRightChild();
+            } else if (root.getRightChild() == null) {
+                return root.getLeftChild();
+            }
+
+            BinaryTreeNode minNode = findMin(root.getRightChild());
+            root.setElement(minNode.getElement());
+            root.setRightChild(removeElement_recursive(root.getRightChild(), minNode));
+        }
+        return root;
+    }
+
+    public BinaryTreeNode findMin() throws Exception {
+        BinaryTreeNode node = root;
+        return findMin(node);
+    }
+
+    public BinaryTreeNode findMin(BinaryTreeNode node) {
+        while (node.getLeftChild() != null) {
+            node = node.getLeftChild();
+        }
+        return node;
+    }
+
+    public BinaryTreeNode findMax() throws Exception {
+        BinaryTreeNode node = root;
+        return findMax(node);
+    }
+
+    public BinaryTreeNode findMax(BinaryTreeNode node) {
+        while (node.getRightChild() != null) {
+            node = node.getRightChild();
+        }
+        return node;
     }
 
 }

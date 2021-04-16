@@ -44,4 +44,11 @@ public class BinaryTreeNode {
     }
 
 
+    public void setLeftChild(BinaryTreeNode element) {
+        this.left = element;
+    }
+
+    public void setRightChild(BinaryTreeNode element) {
+        this.right = element;
+    }
 }
