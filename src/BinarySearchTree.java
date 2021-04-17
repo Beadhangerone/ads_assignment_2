@@ -3,6 +3,27 @@ import java.util.Collections;
 
 public class BinarySearchTree extends BinaryTree {
 
+    public void rotateRight(BinaryTreeNode node)
+    {
+        BinaryTreeNode left = node.getLeftChild();
+        node.setLeftChild(left.getRightChild());
+
+        if(node.getParent()==null)
+        {
+            root = left;
+        }
+        else if(node.getParent().getRightChild()==node)
+        {
+            node.getParent().setRightChild(left);
+        }
+        else{
+            node.getParent().setLeftChild(left);
+        }
+
+        left.setRightChild(node);
+
+
+    }
     public void rotateLeft(BinaryTreeNode node){
         BinaryTreeNode oldRight = node.getRightChild();
 
