@@ -93,4 +93,15 @@ public class BinarySearchTree extends BinaryTree {
         return node;
     }
 
+
+    public void rotateRight(BinaryTreeNode node)
+    {
+        BinaryTreeNode left = node.getLeftChild();
+        BinaryTreeNode a =  left.getRightChild();
+
+        left.setRightChild(node);
+        node.setLeftChild(a);
+
+    }
+
 }
