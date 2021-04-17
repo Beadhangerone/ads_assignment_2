@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class BinarySearchTreeTest{
+
+
     @Test
     void insert(){
         BinaryTreePrint print = new BinaryTreePrint();
@@ -18,6 +20,19 @@ class BinarySearchTreeTest{
         System.out.println(binarySearchTree.inOrder().toString());
         print.printTree(binarySearchTree.getRoot());
 
+    }
+    @Test
+    void rotateLeft() {
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        BinaryTreePrint treePrint = new BinaryTreePrint();
+        BinaryTreeNode binaryTreeNode8 = binarySearchTree.insert(8);
+        binarySearchTree.insert(4);
+        binarySearchTree.insert(25);
+        binarySearchTree.insert(60);
+        binarySearchTree.insert(9);
+        binarySearchTree.insert(7);
+        binarySearchTree.rotateLeft(binaryTreeNode8);
+        treePrint.printTree(binarySearchTree.getRoot());
     }
     @Test
     void removeElement(){

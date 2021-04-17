@@ -4,7 +4,7 @@ import java.util.Collections;
 public class BinarySearchTree extends BinaryTree {
     private BinaryTreeNode root;
 
-    private BinaryTreeNode rotateLeft(BinaryTreeNode node)
+    public BinaryTreeNode rotateLeft(BinaryTreeNode node)
     {
         BinaryTreeNode oldRight = node.getRightChild();
         node.setRightChild(oldRight.getLeftChild());
