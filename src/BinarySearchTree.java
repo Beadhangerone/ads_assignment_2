@@ -1,8 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class BinarySearchTree extends BinaryTree {
-    private BinaryTreeNode root;
 
     private void insertElementRight(BinaryTreeNode node, int element) {
         if (node.getRightChild() == null) {
@@ -21,9 +18,9 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     private void insert(BinaryTreeNode node, int element) {
-        if (element > node.getElement()) {
+        if (element >= node.getElement()) {
             insertElementRight(node, element);
-        } else if (element < node.getElement()) {
+        } else {
             insertElementLeft(node, element);
         }
     }
