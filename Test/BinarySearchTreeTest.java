@@ -58,4 +58,26 @@ class BinarySearchTreeTest{
         assertEquals(11,bTree.findMax().getElement());
     }
 
+    @Test
+    void rotateRight()
+    {
+        BinarySearchTree bTree = new BinarySearchTree();
+        BinaryTreePrint treePrinter = new BinaryTreePrint();
+
+        BinaryTreeNode root = bTree.insert(3);
+        BinaryTreeNode node1 =  bTree.insert(10);
+        bTree.insert(1);
+        BinaryTreeNode node = bTree.insert(6);
+        bTree.insert(8);
+        bTree.insert(11);
+        bTree.insert(2);
+        bTree.insert(4);
+        bTree.insert(7);
+
+        bTree.rotateRight(node);
+
+
+        treePrinter.printTree(bTree.getRoot());
+    }
+
 }
