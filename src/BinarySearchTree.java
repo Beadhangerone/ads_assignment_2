@@ -7,20 +7,25 @@ public class BinarySearchTree extends BinaryTree {
     public BinaryTreeNode rotateLeft(BinaryTreeNode node)
     {
         BinaryTreeNode oldRight = node.getRightChild();
-        node.setRightChild(oldRight.getLeftChild());
-        if(node.getParent() == null)
+        if(oldRight!=null)
         {
-            root = oldRight;
+            node.setRightChild(oldRight.getLeftChild());
+            if(node.getParent() == null)
+            {
+                root = oldRight;
+            }
+            else if(node.getParent().getLeftChild() == node)
+            {
+                node.getParent().setLeftChild(oldRight);
+            }
+            else {
+                node.getParent().setRightChild(oldRight);
+            }
+            oldRight.setLeftChild(node);
+            return oldRight;
         }
-        else if(node.getParent().getLeftChild() == node)
-        {
-            node.getParent().setLeftChild(oldRight);
-        }
-        else {
-            node.getParent().setRightChild(oldRight);
-        }
-        oldRight.setLeftChild(node);
-        return oldRight;
+       return node;
+
     }
     private void insertElementRight(BinaryTreeNode node, int element) {
         if (node.getRightChild() == null) {

@@ -19,7 +19,7 @@ class BinarySearchTreeTest{
 
         System.out.println(binarySearchTree.inOrder().toString());
         print.printTree(binarySearchTree.getRoot());
-
+       assertEquals(binarySearchTree.size(), 5);
     }
     @Test
     void rotateLeft() {
@@ -31,8 +31,11 @@ class BinarySearchTreeTest{
         binarySearchTree.insert(60);
         binarySearchTree.insert(9);
         binarySearchTree.insert(7);
+        treePrint.printTree(binarySearchTree.getRoot());
+        System.out.println("-------------------------");
         binarySearchTree.rotateLeft(binaryTreeNode8);
         treePrint.printTree(binarySearchTree.getRoot());
+
     }
     @Test
     void removeElement(){
