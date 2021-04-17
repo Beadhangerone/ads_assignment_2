@@ -4,12 +4,8 @@ import java.util.Collections;
 public class BinarySearchTree extends BinaryTree {
     private BinaryTreeNode root;
 
-    private void rotateLeft(BinaryTreeNode node)
+    private BinaryTreeNode rotateLeft(BinaryTreeNode node)
     {
-        if(node.getRightChild()==null)
-        {
-            return;
-        }
         BinaryTreeNode oldRight = node.getRightChild();
         node.setRightChild(oldRight.getLeftChild());
         if(node.getParent() == null)
@@ -24,6 +20,7 @@ public class BinarySearchTree extends BinaryTree {
             node.getParent().setRightChild(oldRight);
         }
         oldRight.setLeftChild(node);
+        return oldRight;
     }
     private void insertElementRight(BinaryTreeNode node, int element) {
         if (node.getRightChild() == null) {
