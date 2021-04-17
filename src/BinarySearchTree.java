@@ -18,9 +18,9 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     private void insert(BinaryTreeNode node, int element) {
-        if (element >= node.getElement()) {
+        if (element > node.getElement()) {
             insertElementRight(node, element);
-        } else {
+        } else if (element < node.getElement()) {
             insertElementLeft(node, element);
         }
     }
@@ -89,5 +89,16 @@ public class BinarySearchTree extends BinaryTree {
         }
         return node;
     }
+
+    public int GetBalance(){
+        if(root == null)
+        {
+           return -1;
+        }
+        int leftPart = height(root.getLeftChild());
+        int rightPart = height(root.getRightChild());
+        return rightPart - leftPart;
+    }
+
 
 }
