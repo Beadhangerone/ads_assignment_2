@@ -2,7 +2,33 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BinarySearchTree extends BinaryTree {
-    private BinaryTreeNode root;
+
+    public void rotateLeft(BinaryTreeNode node){
+        BinaryTreeNode oldRight = node.getRightChild();
+
+        if(oldRight == null) {
+            return; // can't rotate
+        }
+
+        BinaryTreeNode orphanTree = oldRight.getLeftChild();
+        BinaryTreeNode nodeParent = node.getParent();
+
+        // rotate
+        oldRight.setLeftChild(node);
+        oldRight.setParent(nodeParent);
+        node.setParent(oldRight);
+
+        // connect the orphan tree
+        node.setRightChild(orphanTree);
+        orphanTree.setParent(node);
+
+        // update the root attribute
+        BinaryTreeNode root = this.getRoot();
+        if(root == node){
+            this.setRoot(oldRight);
+        }
+
+    }
 
     private void insertElementRight(BinaryTreeNode node, int element) {
         if (node.getRightChild() == null) {
@@ -93,27 +119,15 @@ public class BinarySearchTree extends BinaryTree {
         return node;
     }
 
-
-    public void rotateRight(BinaryTreeNode node)
-    {
-        BinaryTreeNode left = node.getLeftChild();
-        node.setLeftChild(left.getRightChild());
-
-        if(node.getParent()==null)
+    public int GetBalance(){
+        if(root == null)
         {
-          root = left;
+           return -1;
         }
-        else if(node.getParent().getRightChild()==node)
-        {
-          node.getParent().setRightChild(left);
-        }
-        else{
-          node.getParent().setLeftChild(left);
-        }
-
-        left.setRightChild(node);
-
-
+        int leftPart = height(root.getLeftChild());
+        int rightPart = height(root.getRightChild());
+        return rightPart - leftPart;
     }
+
 
 }

@@ -19,6 +19,5 @@ class TreeTest {
 
         System.out.println(binarySearchTree.inOrder().toString());
         print.printTree(binarySearchTree.getRoot());
-
     }
 }
