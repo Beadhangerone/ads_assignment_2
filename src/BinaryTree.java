@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Queue;
 
 public class BinaryTree {
-    private BinaryTreeNode root;
+    protected BinaryTreeNode root;
 
     public BinaryTreeNode getRoot() {
         return root;
@@ -22,7 +22,7 @@ public class BinaryTree {
     }
     private int size(BinaryTreeNode node) {
         if(node == null) {
-            return  0;
+            return 0;
         } return (size(node.getLeftChild()) + 1 + size(node.getRightChild()));
     }
     public boolean contains(int element){
@@ -121,15 +121,12 @@ public class BinaryTree {
         }
     }
     public int height() {
-        //i added this check here because.. yeah check assignment description
-        if(root==null)
-        {return -1;}
         return height(root);
     }
 
     private int height(BinaryTreeNode node) {
         if(node == null) {
-            return 0;
+            return -1;
         } else {
             int leftHeight = height(node.getLeftChild());
             int rightHeight = height(node.getRightChild());
