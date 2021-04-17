@@ -119,4 +119,15 @@ public class BinarySearchTree extends BinaryTree {
         return node;
     }
 
+    public int GetBalance(){
+        if(root == null)
+        {
+           return -1;
+        }
+        int leftPart = height(root.getLeftChild());
+        int rightPart = height(root.getRightChild());
+        return rightPart - leftPart;
+    }
+
+
 }

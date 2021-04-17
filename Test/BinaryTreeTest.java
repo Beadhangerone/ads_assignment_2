@@ -48,11 +48,7 @@ class BinaryTreeTest {
     void checkIfTreeDoesntContainElement(){
         assertFalse(binarySearchTree.contains(99));
     }
-    @Test
-    void checkIfDuplicateIsAdded(){
-        binarySearchTree.insert(3);
-        assertEquals(8, binarySearchTree.size());
-    }
+
     @Test
     void checkIfInOrderIsCorrect(){
         ArrayList<Integer> correctOrderArrayList = new ArrayList<>(Arrays.asList(0,1,3,5,66,69,77));
@@ -94,6 +90,17 @@ class BinaryTreeTest {
             }
         }
         return true;
+    }
+
+    @Test
+    void checkGetBalance(){
+        assertEquals(0, binarySearchTree.GetBalance());
+        binarySearchTree.insert(50);
+        assertEquals(1, binarySearchTree.GetBalance());
+        binarySearchTree.insert(111);
+        assertEquals(1, binarySearchTree.GetBalance());
+        binarySearchTree.insert(119);
+        assertEquals(2, binarySearchTree.GetBalance());
     }
 
 }
