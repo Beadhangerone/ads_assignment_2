@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Queue;
 
 public class BinaryTree {
-    private BinaryTreeNode root;
+    protected BinaryTreeNode root;
 
     public BinaryTreeNode getRoot() {
         return root;

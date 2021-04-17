@@ -2,31 +2,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class BinarySearchTree extends BinaryTree {
-    private BinaryTreeNode root;
 
-    public BinaryTreeNode rotateLeft(BinaryTreeNode node)
-    {
+    public void rotateLeft(BinaryTreeNode node){
         BinaryTreeNode oldRight = node.getRightChild();
-        if(oldRight!=null)
-        {
-            node.setRightChild(oldRight.getLeftChild());
-            if(node.getParent() == null)
-            {
-                root = oldRight;
-            }
-            else if(node.getParent().getLeftChild() == node)
-            {
-                node.getParent().setLeftChild(oldRight);
-            }
-            else {
-                node.getParent().setRightChild(oldRight);
-            }
-            oldRight.setLeftChild(node);
-            return oldRight;
+
+        if(oldRight == null) {
+            return; // can't rotate
         }
-       return node;
+
+        BinaryTreeNode orphanTree = oldRight.getLeftChild();
+        BinaryTreeNode nodeParent = node.getParent();
+
+        // rotate
+        oldRight.setLeftChild(node);
+        oldRight.setParent(nodeParent);
+        node.setParent(oldRight);
+
+        // connect the orphan tree
+        node.setRightChild(orphanTree);
+        orphanTree.setParent(node);
+
+        // update the root attribute
+        BinaryTreeNode root = this.getRoot();
+        if(root == node){
+            this.setRoot(oldRight);
+        }
 
     }
+
     private void insertElementRight(BinaryTreeNode node, int element) {
         if (node.getRightChild() == null) {
             node.addRightChild(new BinaryTreeNode(element));

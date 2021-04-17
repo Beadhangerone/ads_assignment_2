@@ -32,7 +32,7 @@ class BinarySearchTreeTest{
         binarySearchTree.insert(9);
         binarySearchTree.insert(7);
         treePrint.printTree(binarySearchTree.getRoot());
-        System.out.println("-------------------------");
+        System.out.println("\n-------------------------");
         binarySearchTree.rotateLeft(binaryTreeNode8);
         treePrint.printTree(binarySearchTree.getRoot());
 
