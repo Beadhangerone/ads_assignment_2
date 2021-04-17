@@ -124,7 +124,7 @@ public class BinaryTree {
         return height(root);
     }
 
-    private int height(BinaryTreeNode node) {
+    protected int height(BinaryTreeNode node) {
         if(node == null) {
             return -1;
         } else {
