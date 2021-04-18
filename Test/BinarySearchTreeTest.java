@@ -1,11 +1,14 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 class BinarySearchTreeTest{
 
 
     @Test
-    void insert(){
+    void checkCorrectOrderAfterInsertion(){
         BinaryTreePrint print = new BinaryTreePrint();
 
         BinarySearchTree binarySearchTree = new BinarySearchTree();
@@ -19,23 +22,60 @@ class BinarySearchTreeTest{
 
         System.out.println(binarySearchTree.inOrder().toString());
         print.printTree(binarySearchTree.getRoot());
-       assertEquals(binarySearchTree.size(), 5);
+
+        ArrayList<Integer> correctOrderArrayListAfterInsertion = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        assertTrue(checkIfArraysCorrespond(correctOrderArrayListAfterInsertion,binarySearchTree.inOrder()));
+        assertEquals(binarySearchTree.size(), 5);
+    }
+
+    @Test
+    void checkIfSizeIsCorrectAfterInsertion(){
+        BinarySearchTree binarySearchTree = new BinarySearchTree();
+        binarySearchTree.insert(7);
+        binarySearchTree.insert(9);
+        assertEquals(2, binarySearchTree.size());
     }
     @Test
-    void rotateLeft() {
+    void checkCorrectOrderAfterLeftRotation() {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         BinaryTreePrint treePrint = new BinaryTreePrint();
+        System.out.println("Before rotation:");
         BinaryTreeNode binaryTreeNode8 = binarySearchTree.insert(8);
         binarySearchTree.insert(4);
         binarySearchTree.insert(25);
         binarySearchTree.insert(60);
         binarySearchTree.insert(9);
         binarySearchTree.insert(7);
+        binarySearchTree.insert(0);
         treePrint.printTree(binarySearchTree.getRoot());
         System.out.println("\n-------------------------");
+        System.out.println("After rotation:");
         binarySearchTree.rotateLeft(binaryTreeNode8);
         treePrint.printTree(binarySearchTree.getRoot());
+        ArrayList<Integer> correctOrderArrayListAfterRotation = new ArrayList<>(Arrays.asList(0,4,7,8,9,25,60));
+        assertTrue(checkIfArraysCorrespond(correctOrderArrayListAfterRotation,binarySearchTree.inOrder()));
 
+    }
+    @Test
+    void rotateRight()
+    {
+        BinarySearchTree bTree = new BinarySearchTree();
+        BinaryTreePrint treePrinter = new BinaryTreePrint();
+
+        BinaryTreeNode root = bTree.insert(3);
+        BinaryTreeNode node1 =  bTree.insert(10);
+        bTree.insert(1);
+        BinaryTreeNode node = bTree.insert(6);
+        bTree.insert(8);
+        bTree.insert(11);
+        bTree.insert(2);
+        bTree.insert(4);
+        bTree.insert(7);
+
+        bTree.rotateRight(node);
+
+
+        treePrinter.printTree(bTree.getRoot());
     }
     @Test
     void removeElement(){
@@ -55,64 +95,16 @@ class BinarySearchTreeTest{
         treePrinter.printTree(bTree.getRoot());
     }
 
-    @Test
-    void findMin() throws Exception {
-        BinarySearchTree bTree = new BinarySearchTree();
-        BinaryTreePrint treePrinter = new BinaryTreePrint();
+    private boolean checkIfArraysCorrespond(ArrayList<Integer> correctOrderArrayList, ArrayList<Integer> actualOrderArrayList){
+        if(actualOrderArrayList.size() != correctOrderArrayList.size())
+            return false;
 
-        bTree.insert(3);
-        bTree.insert(10);
-        bTree.insert(1);
-        bTree.insert(6);
-        bTree.insert(8);
-        bTree.insert(11);
-        bTree.insert(2);
-        bTree.insert(4);
-        bTree.insert(7);
-
-
-        assertEquals(1,bTree.findMin().getElement());
+        for (int i = 0; i < correctOrderArrayList.size() ; i++) {
+            if(actualOrderArrayList.get(i) != correctOrderArrayList.get(i))
+            {
+                return false;
+            }
+        }
+        return true;
     }
-
-    @Test
-    void findMax() throws Exception {
-        BinarySearchTree bTree = new BinarySearchTree();
-        BinaryTreePrint treePrinter = new BinaryTreePrint();
-
-        bTree.insert(3);
-        bTree.insert(10);
-        bTree.insert(1);
-        bTree.insert(6);
-        bTree.insert(8);
-        bTree.insert(11);
-        bTree.insert(2);
-        bTree.insert(4);
-        bTree.insert(7);
-
-
-        assertEquals(11,bTree.findMax().getElement());
-    }
-
-    @Test
-    void rotateRight()
-    {
-        BinarySearchTree bTree = new BinarySearchTree();
-        BinaryTreePrint treePrinter = new BinaryTreePrint();
-
-        BinaryTreeNode root = bTree.insert(10);
-        BinaryTreeNode node1 =  bTree.insert(2);
-       BinaryTreeNode node8 = bTree.insert(8);
-        BinaryTreeNode node = bTree.insert(3);
-        BinaryTreeNode node7= bTree.insert(7);
-        bTree.insert(6);
-        bTree.insert(2);
-        bTree.insert(1);
-        bTree.insert(12);
-
-        //bTree.rotateRight(node8);
-       bTree.rotateLeft(node);
-
-        treePrinter.printTree(bTree.getRoot());
-    }
-
 }
