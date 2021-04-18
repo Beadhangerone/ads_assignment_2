@@ -158,5 +158,54 @@ public class BinarySearchTree extends BinaryTree {
         return rightPart - leftPart;
     }
 
+    //julias
+    public void rebalance()
+    {
+        if(GetBalance()<=1 && GetBalance()>=-1)
+        {
+            System.out.println("tree is already balanced");
+        }
+        int h = super.height();
+        //first idea: ordering tree to the array and then build new tree inserting nodes and rebalancing tree after every insert
+
+        //second idea: implement method post order but returning list of nodes and go through it rebalancing every node
+    }
+
+    //julias
+    private int getNodeBalance(BinaryTreeNode node)
+    {
+        if(node == null)
+        {
+            return 0;
+        }
+        int leftPart = height(node.getLeftChild());
+        int rightPart = height(node.getRightChild());
+        return rightPart - leftPart;
+    }
+    //julias
+    private void rebalanceNode(BinaryTreeNode node)
+    {
+        int balance = getNodeBalance(node);
+        if(balance>1){
+            if(height(node.getRightChild().getRightChild())>height(node.getRightChild().getLeftChild())){
+                rotateLeft(node);
+            }
+            else{
+                rotateRight(node.getRightChild());
+                rotateLeft(node);
+            }
+        }
+        else if(balance<-1)
+        {
+            if(height(node.getLeftChild().getLeftChild())>height(node.getLeftChild().getRightChild())){
+                rotateRight(node);
+            }
+            else{
+                rotateLeft(node.getLeftChild());
+                rotateRight(node);
+            }
+        }
+    }
+
 
 }
