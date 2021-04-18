@@ -99,18 +99,18 @@ class BinarySearchTreeTest{
         BinarySearchTree bTree = new BinarySearchTree();
         BinaryTreePrint treePrinter = new BinaryTreePrint();
 
-        BinaryTreeNode root = bTree.insert(3);
-        BinaryTreeNode node1 =  bTree.insert(10);
-        bTree.insert(1);
-        BinaryTreeNode node = bTree.insert(6);
-        bTree.insert(8);
-        bTree.insert(11);
+        BinaryTreeNode root = bTree.insert(10);
+        BinaryTreeNode node1 =  bTree.insert(2);
+       BinaryTreeNode node8 = bTree.insert(8);
+        BinaryTreeNode node = bTree.insert(3);
+        BinaryTreeNode node7= bTree.insert(7);
+        bTree.insert(6);
         bTree.insert(2);
-        bTree.insert(4);
-        bTree.insert(7);
+        bTree.insert(1);
+        bTree.insert(12);
 
-        bTree.rotateRight(node);
-
+        //bTree.rotateRight(node8);
+       bTree.rotateLeft(node);
 
         treePrinter.printTree(bTree.getRoot());
     }

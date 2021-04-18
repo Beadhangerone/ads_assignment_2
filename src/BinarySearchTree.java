@@ -7,6 +7,7 @@ public class BinarySearchTree extends BinaryTree {
         BinaryTreeNode oldRight = node.getRightChild();
 
         if(oldRight == null) {
+            System.out.println("old right is null");
             return; // can't rotate
         }
 
@@ -26,6 +27,34 @@ public class BinarySearchTree extends BinaryTree {
         BinaryTreeNode root = this.getRoot();
         if(root == node){
             this.setRoot(oldRight);
+        }
+
+    }
+
+    public void rotateRight(BinaryTreeNode node){
+        BinaryTreeNode oldLeft = node.getLeftChild();
+
+        if(oldLeft == null) {
+            System.out.println("old left is null");
+            return; // can't rotate
+        }
+
+        BinaryTreeNode orphanTree = oldLeft.getRightChild();
+        BinaryTreeNode nodeParent = node.getParent();
+
+        // rotate
+        oldLeft.setRightChild(node);
+        oldLeft.setParent(nodeParent);
+        node.setParent(oldLeft);
+
+        // connect the orphan tree
+        node.setLeftChild(orphanTree);
+        orphanTree.setParent(node);
+
+        // update the root attribute
+        BinaryTreeNode root = this.getRoot();
+        if(root == node){
+            this.setRoot(oldLeft);
         }
 
     }
