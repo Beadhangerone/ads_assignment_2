@@ -52,13 +52,4 @@ public class BinaryTreeNode {
     public void setRightChild(BinaryTreeNode element) {
         this.right = element;
     }
-
-    public BinaryTreeNode getRoot(){
-        BinaryTreeNode node = this;
-        while(node.getParent() != null){
-            node = node.getParent();
-        }
-
-        return node;
-    }
 }

@@ -66,17 +66,17 @@ public class BinaryTree {
         inOrder(node.getRightChild(), values);
     }
 
-    public ArrayList<Integer> preOrder() {
-        ArrayList<Integer> list = new ArrayList<>();
+    public ArrayList<BinaryTreeNode> preOrder() {
+        ArrayList<BinaryTreeNode> list = new ArrayList<>();
         preOrder(root, list);
         return list;
     }
 
-    private void preOrder(BinaryTreeNode node, ArrayList<Integer> values) {
+    private void preOrder(BinaryTreeNode node, ArrayList<BinaryTreeNode> values) {
         if (node == null) {
             return;
         }
-        values.add(node.getElement());
+        values.add(node);
         preOrder(node.getLeftChild(), values);
         preOrder(node.getRightChild(), values);
     }

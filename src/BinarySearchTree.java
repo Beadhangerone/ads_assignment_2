@@ -3,7 +3,7 @@ import java.util.Collections;
 
 public class BinarySearchTree extends BinaryTree {
 
-    public void rotateRight(BinaryTreeNode node) {
+    private void rotateRight(BinaryTreeNode node) {
         BinaryTreeNode oldLeft = node.getLeftChild();
 
         if (oldLeft == null) {
@@ -37,7 +37,7 @@ public class BinarySearchTree extends BinaryTree {
         }
     }
 
-    public void rotateLeft(BinaryTreeNode node) {
+    private void rotateLeft(BinaryTreeNode node) {
         BinaryTreeNode oldRight = node.getRightChild();
 
         if (oldRight == null) {
@@ -139,24 +139,24 @@ public class BinarySearchTree extends BinaryTree {
         return root;
     }
 
-    public BinaryTreeNode findMin() throws Exception {
+    public BinaryTreeNode findMin() {
         BinaryTreeNode node = root;
         return findMin(node);
     }
 
-    public BinaryTreeNode findMin(BinaryTreeNode node) {
+    private BinaryTreeNode findMin(BinaryTreeNode node) {
         while (node.getLeftChild() != null) {
             node = node.getLeftChild();
         }
         return node;
     }
 
-    public BinaryTreeNode findMax() throws Exception {
+    public BinaryTreeNode findMax() {
         BinaryTreeNode node = root;
         return findMax(node);
     }
 
-    public BinaryTreeNode findMax(BinaryTreeNode node) {
+    private BinaryTreeNode findMax(BinaryTreeNode node) {
         while (node.getRightChild() != null) {
             node = node.getRightChild();
         }
