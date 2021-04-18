@@ -3,39 +3,11 @@ import java.util.Collections;
 
 public class BinarySearchTree extends BinaryTree {
 
-    public void rotateLeft(BinaryTreeNode node){
-        BinaryTreeNode oldRight = node.getRightChild();
-
-        if(oldRight == null) {
-            System.out.println("old right is null");
-            return; // can't rotate
-        }
-
-        BinaryTreeNode orphanTree = oldRight.getLeftChild();
-        BinaryTreeNode nodeParent = node.getParent();
-
-        // rotate
-        oldRight.setLeftChild(node);
-        oldRight.setParent(nodeParent);
-        node.setParent(oldRight);
-
-        // connect the orphan tree
-        node.setRightChild(orphanTree);
-        orphanTree.setParent(node);
-
-        // update the root attribute
-        BinaryTreeNode root = this.getRoot();
-        if(root == node){
-            this.setRoot(oldRight);
-        }
-
-    }
-
-    public void rotateRight(BinaryTreeNode node){
+    public void rotateRight(BinaryTreeNode node) {
         BinaryTreeNode oldLeft = node.getLeftChild();
 
-        if(oldLeft == null) {
-            System.out.println("old left is null");
+        if (oldLeft == null) {
+            System.out.println("Can't Rotate");
             return; // can't rotate
         }
 
@@ -49,47 +21,90 @@ public class BinarySearchTree extends BinaryTree {
 
         // connect the orphan tree
         node.setLeftChild(orphanTree);
-        orphanTree.setParent(node);
-
-        // update the root attribute
-        BinaryTreeNode root = this.getRoot();
-        if(root == node){
-            this.setRoot(oldLeft);
+        if (orphanTree != null) {
+            orphanTree.setParent(node);
         }
 
+        // update the parent or the root
+        if (nodeParent == null) { // the parent was the root
+            setRoot(oldLeft);
+        } else {
+            if (nodeParent.getLeftChild() == node) {
+                nodeParent.setLeftChild(oldLeft);
+            } else {
+                nodeParent.setRightChild(oldLeft);
+            }
+        }
     }
 
-    private void insertElementRight(BinaryTreeNode node, int element) {
+    public void rotateLeft(BinaryTreeNode node) {
+        BinaryTreeNode oldRight = node.getRightChild();
+
+        if (oldRight == null) {
+            System.out.println("Can't Rotate");
+            return; // can't rotate
+        }
+
+        BinaryTreeNode orphanTree = oldRight.getLeftChild();
+        BinaryTreeNode nodeParent = node.getParent();
+
+        // rotate
+        oldRight.setLeftChild(node);
+        oldRight.setParent(nodeParent);
+        node.setParent(oldRight);
+
+        // connect the orphan tree
+        node.setRightChild(orphanTree);
+        if (orphanTree != null) {
+            orphanTree.setParent(node);
+        }
+
+        // update the parent or the root
+        if (nodeParent == null) { // the parent was the root
+            setRoot(oldRight);
+        } else {
+            if (nodeParent.getLeftChild() == node) {
+                nodeParent.setLeftChild(oldRight);
+            } else {
+                nodeParent.setRightChild(oldRight);
+            }
+        }
+    }
+
+    private BinaryTreeNode insertElementRight(BinaryTreeNode node, int element) {
         if (node.getRightChild() == null) {
-            node.addRightChild(new BinaryTreeNode(element));
+            return node.addRightChild(new BinaryTreeNode(element));
         } else {
-            insert(node.getRightChild(), element);
+            return insert(node.getRightChild(), element);
         }
     }
 
-    private void insertElementLeft(BinaryTreeNode node, int element) {
+    private BinaryTreeNode insertElementLeft(BinaryTreeNode node, int element) {
         if (node.getLeftChild() == null) {
-            node.addLeftChild(new BinaryTreeNode(element));
+            return node.addLeftChild(new BinaryTreeNode(element));
         } else {
-            insert(node.getLeftChild(), element);
+            return insert(node.getLeftChild(), element);
         }
     }
 
-    private void insert(BinaryTreeNode node, int element) {
+    private BinaryTreeNode insert(BinaryTreeNode node, int element) {
         if (element > node.getElement()) {
-            insertElementRight(node, element);
+            return insertElementRight(node, element);
         } else if (element < node.getElement()) {
-            insertElementLeft(node, element);
+            return insertElementLeft(node, element);
+        } else { // element already present
+            return node;
         }
     }
 
     public BinaryTreeNode insert(int element) {
-        BinaryTreeNode node = new BinaryTreeNode(element);
+        BinaryTreeNode node;
         if (root == null) {
-            root = node;
-            setRoot(root);
+            node = new BinaryTreeNode(element);
+            setRoot(node);
+            return node;
         } else {
-            insert(root, element);
+            node = insert(root, element);
         }
         return node;
     }
@@ -148,10 +163,9 @@ public class BinarySearchTree extends BinaryTree {
         return node;
     }
 
-    public int GetBalance(){
-        if(root == null)
-        {
-           return -1;
+    public int GetBalance() {
+        if (root == null) {
+            return 0;
         }
         int leftPart = height(root.getLeftChild());
         int rightPart = height(root.getRightChild());
