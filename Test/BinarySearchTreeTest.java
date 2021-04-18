@@ -42,7 +42,7 @@ class BinarySearchTreeTest{
         System.out.println("Before rotation:");
         BinaryTreeNode binaryTreeNode8 = binarySearchTree.insert(8);
         binarySearchTree.insert(4);
-        binarySearchTree.insert(25);
+        BinaryTreeNode binaryTreeNode25 = binarySearchTree.insert(25);
         binarySearchTree.insert(60);
         binarySearchTree.insert(9);
         binarySearchTree.insert(7);
@@ -50,7 +50,7 @@ class BinarySearchTreeTest{
         treePrint.printTree(binarySearchTree.getRoot());
         System.out.println("\n-------------------------");
         System.out.println("After rotation:");
-        binarySearchTree.rotateLeft(binaryTreeNode8);
+        binarySearchTree.rotateLeft(binaryTreeNode25);
         treePrint.printTree(binarySearchTree.getRoot());
         ArrayList<Integer> correctOrderArrayListAfterRotation = new ArrayList<>(Arrays.asList(0,4,7,8,9,25,60));
         assertTrue(checkIfArraysCorrespond(correctOrderArrayListAfterRotation,binarySearchTree.inOrder()));
@@ -71,7 +71,8 @@ class BinarySearchTreeTest{
         bTree.insert(2);
         bTree.insert(4);
         bTree.insert(7);
-
+        treePrinter.printTree(bTree.getRoot());
+        System.out.println("\n-----------------------------------------\n");
         bTree.rotateRight(node);
 
 

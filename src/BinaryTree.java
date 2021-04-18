@@ -13,38 +13,39 @@ public class BinaryTree {
         this.root = root;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return root == null;
     }
 
-    public int size(){
-       return size(root);
+    public int size() {
+        return size(root);
     }
+
     private int size(BinaryTreeNode node) {
-        if(node == null) {
+        if (node == null) {
             return 0;
-        } return (size(node.getLeftChild()) + 1 + size(node.getRightChild()));
+        }
+        return (size(node.getLeftChild()) + 1 + size(node.getRightChild()));
     }
-    public boolean contains(int element){
-        if(root == null)
-        {
+
+    public boolean contains(int element) {
+        if (root == null) {
             return false;
         }
-        if(root.getElement() == element)
-        {
+        if (root.getElement() == element) {
             return true;
         }
         return contains(root, element);
     }
 
     private boolean contains(BinaryTreeNode node, int element) {
-        if(node == null) {
+        if (node == null) {
             return false;
         }
-        if(element == node.getElement()) {
+        if (element == node.getElement()) {
             return true;
         }
-        if(contains(node.getLeftChild(), element)) {
+        if (contains(node.getLeftChild(), element)) {
             return true;
         }
         return contains(node.getRightChild(), element);
@@ -57,7 +58,7 @@ public class BinaryTree {
     }
 
     private void inOrder(BinaryTreeNode node, ArrayList<Integer> values) {
-        if(node == null) {
+        if (node == null) {
             return;
         }
         inOrder(node.getLeftChild(), values);
@@ -72,7 +73,7 @@ public class BinaryTree {
     }
 
     private void preOrder(BinaryTreeNode node, ArrayList<Integer> values) {
-        if(node == null) {
+        if (node == null) {
             return;
         }
         values.add(node.getElement());
@@ -88,7 +89,7 @@ public class BinaryTree {
     }
 
     private void postOrder(BinaryTreeNode node, ArrayList<Integer> values) {
-        if(node == null) {
+        if (node == null) {
             return;
         }
         postOrder(node.getLeftChild(), values);
@@ -108,32 +109,33 @@ public class BinaryTree {
         values.add(node.getElement());
         BinaryTreeNode tempNode;
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             tempNode = queue.poll();
-            if(tempNode.getLeftChild() != null) {
+            if (tempNode.getLeftChild() != null) {
                 queue.add(tempNode.getLeftChild());
                 values.add(tempNode.getLeftChild().getElement());
             }
-            if(tempNode.getRightChild() != null) {
+            if (tempNode.getRightChild() != null) {
                 queue.add(tempNode.getRightChild());
                 values.add(tempNode.getRightChild().getElement());
             }
         }
     }
+
     public int height() {
         return height(root);
     }
 
     protected int height(BinaryTreeNode node) {
-        if(node == null) {
+        if (node == null) {
             return -1;
         } else {
             int leftHeight = height(node.getLeftChild());
             int rightHeight = height(node.getRightChild());
 
-            if(leftHeight > rightHeight)
-                return (leftHeight+1);
-            else return (rightHeight+1);
+            if (leftHeight > rightHeight)
+                return (leftHeight + 1);
+            else return (rightHeight + 1);
         }
     }
 }
