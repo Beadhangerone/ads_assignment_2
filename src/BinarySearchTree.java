@@ -165,11 +165,61 @@ public class BinarySearchTree extends BinaryTree {
 
     public int GetBalance() {
         if (root == null) {
-            return -1;
+            return 0;
         }
         int leftPart = height(root.getLeftChild());
         int rightPart = height(root.getRightChild());
         return rightPart - leftPart;
+    }
+
+    //julias
+
+    public void rebalance() {
+        if (GetBalance() <= 1 && GetBalance() >= -1) {
+            System.out.println("tree is already balanced");
+        }
+        ArrayList<BinaryTreeNode> postOrder = postOrder();
+
+        for (BinaryTreeNode parent : postOrder) {
+            rebalanceNode(parent);
+        }
+    }
+
+    //julias
+    private int getNodeBalance(BinaryTreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftPart = height(node.getLeftChild());
+        int rightPart = height(node.getRightChild());
+        return rightPart - leftPart;
+    }
+
+    //julias
+    private void rebalanceNode(BinaryTreeNode parent) {
+        int balance = getNodeBalance(parent);
+        System.out.println(parent.getElement() + " balance = "+balance+"\n");
+        if (balance <= -2) {
+            BinaryTreeNode leftChild = parent.getLeftChild();
+            if (leftChild != null) {
+                int leftChildBalance = getNodeBalance(leftChild);
+                if (leftChildBalance == 1) {
+                    rotateLeft(leftChild);
+                }
+                rotateRight(parent);
+                rebalanceNode(parent);
+            }
+        } else if (balance >= 2) {
+            BinaryTreeNode rightChild = parent.getRightChild();
+            if (rightChild != null) {
+                int rightChildBalance = getNodeBalance(rightChild);
+                if (rightChildBalance == -1) {
+                    rotateRight(rightChild);
+                }
+                rotateLeft(parent);
+                rebalanceNode(parent);
+            }
+        }
     }
 
 
