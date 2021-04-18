@@ -32,12 +32,7 @@ class BinaryTreeTest {
     }
 
 
-    @Test
-    void checkIfSizeIsCorrectAfterInsertion(){
-        binarySearchTree.insert(7);
-        binarySearchTree.insert(9);
-        assertEquals(9, binarySearchTree.size());
-    }
+
 
     @Test
     void checkContainsMethodFindsProperNode(){
@@ -54,6 +49,8 @@ class BinaryTreeTest {
         ArrayList<Integer> correctOrderArrayList = new ArrayList<>(Arrays.asList(0,1,3,5,66,69,77));
         assertTrue(checkIfArraysCorrespond(correctOrderArrayList,binarySearchTree.inOrder()));
 
+        BinaryTreePrint treePrint = new BinaryTreePrint();
+        treePrint.printTree(binarySearchTree.getRoot());
     }
 
     @Test
