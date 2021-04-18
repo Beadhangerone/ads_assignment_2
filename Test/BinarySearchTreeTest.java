@@ -72,7 +72,7 @@ class BinarySearchTreeTest{
         bTree.insert(4);
         bTree.insert(7);
 
-        bTree.rotateRight(node);
+        bTree.rotateLeft(node);
 
 
         treePrinter.printTree(bTree.getRoot());
