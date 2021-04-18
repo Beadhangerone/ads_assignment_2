@@ -60,7 +60,7 @@ public class BinaryTreePrint {
       } else {
         if (current.getElement() != 0) {
           printSpace(dist - 1);
-          System.out.print(current.getElement()+"!!!");
+          System.out.print(current.getElement());
           if (current.getLeftChild() != null) {
             children.add(current.getLeftChild());
             moreNodes = true;

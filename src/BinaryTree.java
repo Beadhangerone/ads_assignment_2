@@ -51,18 +51,18 @@ public class BinaryTree {
         return contains(node.getRightChild(), element);
     }
 
-    public ArrayList<Integer> inOrder() {
-        ArrayList<Integer> list = new ArrayList<>();
+    public ArrayList<BinaryTreeNode> inOrder() {
+        ArrayList<BinaryTreeNode> list = new ArrayList<>();
         inOrder(root, list);
         return list;
     }
 
-    private void inOrder(BinaryTreeNode node, ArrayList<Integer> values) {
+    private void inOrder(BinaryTreeNode node, ArrayList<BinaryTreeNode> values) {
         if (node == null) {
             return;
         }
         inOrder(node.getLeftChild(), values);
-        values.add(node.getElement());
+        values.add(node);
         inOrder(node.getRightChild(), values);
     }
 
@@ -82,42 +82,42 @@ public class BinaryTree {
     }
 
 
-    public ArrayList<Integer> postOrder() {
-        ArrayList<Integer> list = new ArrayList<>();
+    public ArrayList<BinaryTreeNode> postOrder() {
+        ArrayList<BinaryTreeNode> list = new ArrayList<>();
         postOrder(root, list);
         return list;
     }
 
-    private void postOrder(BinaryTreeNode node, ArrayList<Integer> values) {
+    private void postOrder(BinaryTreeNode node, ArrayList<BinaryTreeNode> values) {
         if (node == null) {
             return;
         }
         postOrder(node.getLeftChild(), values);
         postOrder(node.getRightChild(), values);
-        values.add(node.getElement());
+        values.add(node);
     }
 
-    public ArrayList<Integer> levelOrder() {
-        ArrayList<Integer> list = new ArrayList<>();
+    public ArrayList<BinaryTreeNode> levelOrder() {
+        ArrayList<BinaryTreeNode> list = new ArrayList<>();
         levelOrder(root, list);
         return list;
     }
 
-    private void levelOrder(BinaryTreeNode node, ArrayList<Integer> values) {
+    private void levelOrder(BinaryTreeNode node, ArrayList<BinaryTreeNode> values) {
         Queue<BinaryTreeNode> queue = new ArrayDeque<>();
         queue.add(node);
-        values.add(node.getElement());
+        values.add(node);
         BinaryTreeNode tempNode;
 
         while (!queue.isEmpty()) {
             tempNode = queue.poll();
             if (tempNode.getLeftChild() != null) {
                 queue.add(tempNode.getLeftChild());
-                values.add(tempNode.getLeftChild().getElement());
+                values.add(tempNode.getLeftChild());
             }
             if (tempNode.getRightChild() != null) {
                 queue.add(tempNode.getRightChild());
-                values.add(tempNode.getRightChild().getElement());
+                values.add(tempNode.getRightChild());
             }
         }
     }
